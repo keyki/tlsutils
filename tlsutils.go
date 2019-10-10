@@ -93,6 +93,8 @@ func newCertificate(org, commonName string) (*x509.Certificate, error) {
 	notBefore := time.Date(now.Year(), now.Month(), now.Day(), now.Hour(), now.Minute()-5, 0, 0, time.Local)
 	notAfter := notBefore.Add(time.Hour * 24 * 825)
 
+	logrus.Infof("Cert will be valid for 825 days")
+
 	serialNumberLimit := new(big.Int).Lsh(big.NewInt(1), 128)
 	serialNumber, err := rand.Int(rand.Reader, serialNumberLimit)
 	if err != nil {
